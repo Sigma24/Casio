@@ -1,7 +1,7 @@
 import math as mp
 import MODES_BUTTON
 
-print("DAWOOD")
+
 
 def negation(Input):
     return -Input

@@ -12,7 +12,7 @@ from BUTTON_6 import Six_Button
 from BUTTON_7 import Seven_Button
 from BUTTON_8 import eight_Button
 from BUTTON_9 import Nine_Button
-print()
+
 
 # Global variable to store the selected mode
 selected_mode = 'DEG'
