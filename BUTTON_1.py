@@ -1,10 +1,12 @@
+import  ShiftKey
+import  AlphaKey
 
-
-def one_button(Shift_key,Alpha_key):
-         if Shift_key==0 or Alpha_key==0:
+def one_button():
+         if ShiftKey.shift()==-1 or AlphaKey.alpha()==-1:
 
                        return  1
          else:
                     pass
 
-one_button(0,1)
+if __name__ == "__main__":
+      one_button()

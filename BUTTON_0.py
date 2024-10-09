@@ -1,20 +1,22 @@
-import  numpy as np
-import  math as mp
-import  matplotlib.pyplot as plt
+import numpy as np
+import math as mp
+import ShiftKey  # Ensure this points to the correct module
+import AlphaKey  # Ensure this points to the correct module
+
 def rand():
-    print("")
+    print("Random function called.")
+    return "Some result"
 
+def zero_button():
+    if ShiftKey.shift() == 1:
+        result = rand()
+        print(result)
+    elif AlphaKey.alpha() == 1:
+        pass
+    else:
+        return 0
 
-def  zero_button(shift_key,Alpha_key):
-       if shift_key==1:
-           rand()
-           shift_key=0
-       elif(Alpha_key==1):
-           pass
-           Alpha_key=0
-       else:
-           
-           return 0
-
-zero_button(0,0)
-
+if __name__ == "__main__":
+    result = zero_button()
+    if result is not None:
+        print(result)
