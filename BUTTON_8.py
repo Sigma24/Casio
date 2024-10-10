@@ -2,7 +2,8 @@ import  numpy as np
 import  math as mp
 import  matplotlib.pyplot as plt
 
-from TAN_BUTTON import Shift_key
+import  ShiftKey
+import  AlphaKey
 
 
 def  conversion_Number():
@@ -10,15 +11,14 @@ def  conversion_Number():
 
 
 
-def  eight_Button(Shift_Key,Alpha_key):
-    if  Shift_Key==1:
+def  eight_Button():
+    if  ShiftKey.shift()==1:
            conversion_Number()
-           Shift_key=0
-    elif Alpha_key==1:
-        pass
-        Alpha_key=0
-    else:
-        val=8
-        return val
 
-eight_Button(0,0)
+    elif AlphaKey.alpha()==1:
+        pass
+
+    else:
+        return 8
+
+eight_Button()

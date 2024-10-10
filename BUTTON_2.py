@@ -1,14 +1,16 @@
 import  numpy as np
 import  math as mp
 import  matplotlib.pyplot as plt
+import  ShiftKey
+import  AlphaKey
 
 
 
-
-def  Two_Button(Shift_Key,Alpha_key):
-    if  Shift_Key==0 or  Alpha_key==0:
+def  Two_Button():
+    if   ShiftKey.shift()  ==-1 or AlphaKey.alpha()==-1:
            return  2
     else:
         pass
+if __name__ == "__main__":
 
-Two_Button(0,0)
+  Two_Button()

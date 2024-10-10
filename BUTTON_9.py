@@ -1,6 +1,8 @@
 import  numpy as np
 import  math as mp
 import  matplotlib.pyplot as plt
+import  ShiftKey
+import  AlphaKey
 
 def SETUP():
     print()
@@ -30,15 +32,14 @@ def  Clear():
 
 
 
-def  Nine_Button(Shift_Key,Alpha_key):
-    if  Shift_Key==1:
+def  Nine_Button():
+    if  ShiftKey.shift()==1:
            Clear()
-           Shift_Key=0
-    elif Alpha_key==1:
-        pass
-        Alpha_key=0
-    else:
-        val=9
-        return val
 
-Nine_Button(0,0)
+    elif AlphaKey.alpha()==1:
+        pass
+
+    else:
+        return 9
+
+Nine_Button()

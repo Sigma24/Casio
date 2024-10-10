@@ -1,21 +1,23 @@
 import numpy as np
 import math as mp
 import matplotlib.pyplot as plt
+import  MODES_BUTTON
+import  ShiftKey
+import  AlphaKey
 
 
 
-
-def cosh(Value, type="radian", fix=0):
+def cosh(Value, fix=0):
     if -mp.inf < Value < mp.inf:
-        if type == "degree":
+        if MODES_BUTTON.get_current_mode() == "DEG":
             deg_value = np.deg2rad(Value)
             result = np.cosh(deg_value)
 
 
-        elif type == "radian":
+        elif  MODES_BUTTON.get_current_mode() == "RAD":
             result = np.cosh(Value)
 
-        elif type == "gradient":
+        elif MODES_BUTTON.get_current_mode() == "GRAD":
             con = Value * np.pi / 200
             result = np.cosh(con)
 
@@ -26,7 +28,7 @@ def cosh(Value, type="radian", fix=0):
             fix = 9
         rounded_result = round(result, fix)
         print(f"cosh({Value}): {rounded_result}")
-        coshgraph(Value,type)
+        coshgraph(Value,MODES_BUTTON.get_current_mode())
         return result
 
 
@@ -38,7 +40,7 @@ def cosh(Value, type="radian", fix=0):
 def coshgraph(v,mode):
     print("About to plot a graph")
     starting = v
-    ending = v + 2 * np.pi if mode == "radian" else v + 360
+    ending = v + 2 * np.pi if mode == "RAD" else v + 360
     if not -mp.inf < starting < mp.inf or not -mp.inf < ending < mp.inf:
         print("Math error: Value out of domain")
     value = np.linspace(starting, ending, 200)
@@ -46,15 +48,15 @@ def coshgraph(v,mode):
 
     for i in value:
         try:
-            if mode == "degree":
+            if mode == "DEG":
                 conv = np.radians(i)
                 val = np.cosh(conv)
                 print(f"the cosh of {i} in {mode} is {val}")
-            elif mode == "radian":
+            elif mode == "RAD":
                 val = np.cosh(i)
                 print(f"the cosh of {i} in {mode} is {val}")
 
-            elif mode == "gradian":
+            elif mode == "GRAD":
                 convo = (i * np.pi / 200)
                 val = np.cosh(convo)
                 print(f"the cosh of {i} in {mode} is {val}")
@@ -67,7 +69,7 @@ def coshgraph(v,mode):
             print(f"Skipping the value {i} due to domain error")
             continue
 
-    plt.plot(value, cal_value, label=f"f(cosh(x)) of type {mode.capitalize()}")
+    plt.plot(value, cal_value, label=f"f(cosh(x)) of type {MODES_BUTTON.get_current_mode()}")
     plt.xlabel('x')
     plt.ylabel(f'f(cosh(x))')
     plt.grid(True)
@@ -75,17 +77,17 @@ def coshgraph(v,mode):
     plt.show()
 
 
-def sinh(Value, type="radian", fix=0):
+def sinh(Value, fix=0):
     if -mp.inf < Value < mp.inf:
-        if type == "degree":
+        if MODES_BUTTON.get_current_mode() == "DEG":
             deg_value = np.deg2rad(Value)
             result = np.sinh(deg_value)
 
 
-        elif type == "radian":
+        elif MODES_BUTTON.get_current_mode()== "RAD":
             result = np.sinh(Value)
 
-        elif type == "gradient":
+        elif MODES_BUTTON.get_current_mode() == "GRAD":
             con = Value * np.pi / 200
             result = np.sinh(con)
 
@@ -96,7 +98,7 @@ def sinh(Value, type="radian", fix=0):
             fix = 9
         rounded_result = round(result, fix)
         print(f"sinh({Value}): {rounded_result}")
-        sinhgraph(Value,type)
+        sinhgraph(Value,MODES_BUTTON.get_current_mode())
         return result
 
 
@@ -108,7 +110,7 @@ def sinh(Value, type="radian", fix=0):
 def sinhgraph(v,mode):
     print("About to plot a graph")
     starting = v
-    ending = v + 2 * np.pi if mode == "radian" else v + 360
+    ending = v + 2 * np.pi if mode == "RAD" else v + 360
 
     value = np.linspace(starting, ending, 200)
     cal_value = []
@@ -116,15 +118,15 @@ def sinhgraph(v,mode):
         print("Math error: Value out of domain")
     for i in value:
         try:
-            if mode == "degree":
+            if mode == "DEG":
                 conv = np.radians(i)
                 val = np.sinh(conv)
                 print(f"the sinh of {i} in {mode} is {val}")
-            elif mode == "radian":
+            elif mode == "RAD":
                 val = np.sinh(i)
                 print(f"the sinh of {i} in {mode} is {val}")
 
-            elif mode == "gradian":
+            elif mode == "GRAD":
                 convo = (i * np.pi / 200)
                 val = np.sinh(convo)
                 print(f"the sinh of {i} in {mode} is {val}")
@@ -137,7 +139,7 @@ def sinhgraph(v,mode):
             print(f"Skipping the value {i} due to domain error")
             continue
 
-    plt.plot(value, cal_value, label=f"f(sinh(x)) of type {mode.capitalize()}")
+    plt.plot(value, cal_value, label=f"f(sinh(x)) of type {mode}")
     plt.xlabel('x')
     plt.ylabel(f'f(sinh(x))')
     plt.grid(True)
@@ -145,17 +147,17 @@ def sinhgraph(v,mode):
     plt.show()
 
 
-def tanh(Value, type="radian", fix=0):
+def tanh(Value, fix=0):
     if -mp.inf < Value < mp.inf:
-        if type == "degree":
+        if MODES_BUTTON.get_current_mode() == "DEG":
             deg_value = np.deg2rad(Value)
             result = np.tanh(deg_value)
 
 
-        elif type == "radian":
+        elif MODES_BUTTON.get_current_mode() == "RAD":
             result = np.tanh(Value)
 
-        elif type == "gradient":
+        elif MODES_BUTTON.get_current_mode() == "GRAD":
             con = Value * np.pi / 200
             result = np.tanh(con)
 
@@ -166,7 +168,7 @@ def tanh(Value, type="radian", fix=0):
             fix = 10
         rounded_result = round(result, fix)
         print(f"tan({Value}): {rounded_result}")
-        tanhgraph(Value,type)
+        tanhgraph(Value,MODES_BUTTON.get_current_mode())
         return result
 
 
@@ -178,7 +180,7 @@ def tanh(Value, type="radian", fix=0):
 def tanhgraph(v,mode):
     print("About to plot a graph")
     starting = v
-    ending = v + 2 * np.pi if mode == "radian" else v + 360
+    ending = v + 2 * np.pi if mode == "RAD" else v + 360
     if not -mp.inf < starting < mp.inf and not -mp.inf < ending < mp.inf:
         print("Math error: Value out of domain")
     value = np.linspace(starting, ending, 200)
@@ -186,14 +188,14 @@ def tanhgraph(v,mode):
 
     for i in value:
         try:
-            if mode == "degree":
+            if mode == "DEG":
                 conv = np.radians(i)
                 val = np.tanh(conv)
                 print(f"the tanh of {i} in {mode} is {val}")
-            elif mode == "radian":
+            elif mode == "RAD":
                 val = np.tanh(i)
                 print(f"the tanh of {i} in {mode} is {val}")
-            elif mode == "gradian":
+            elif mode == "GRAD":
                 convo = (i * np.pi / 200)
                 val = np.tanh(convo)
                 print(f"the tanh of {i} in {mode} is {val}")
@@ -206,7 +208,7 @@ def tanhgraph(v,mode):
             print(f"Skipping the value {i} due to domain error")
             continue
 
-    plt.plot(value, cal_value, label=f"f(tanh(x)) of type {mode.capitalize()}")
+    plt.plot(value, cal_value, label=f"f(tanh(x)) of type {mode}")
     plt.xlabel('x')
     plt.ylabel(f'f(tanh(x))')
     plt.grid(True)
@@ -214,17 +216,17 @@ def tanhgraph(v,mode):
     plt.show()
 
 
-def arcsinh(Value, type="radian", fix=0):
+def arcsinh(Value, fix=0):
     if -1 <= Value <= 1:
-        if type == "degree":
+        if MODES_BUTTON.get_current_mode()== "DEG":
             deg_value = np.deg2rad(Value)
             result = np.arcsinh(deg_value)
 
 
-        elif type == "radian":
+        elif MODES_BUTTON.get_current_mode() == "RAD":
             result = np.arcsinh(Value)
 
-        elif type == "gradient":
+        elif MODES_BUTTON.get_current_mode() == "GRAD":
             con = Value * np.pi / 200
             result = np.arcsinh(con)
 
@@ -235,7 +237,7 @@ def arcsinh(Value, type="radian", fix=0):
             fix = 10
         rounded_result = round(result, fix)
         print(f"sinh⁻¹({Value}): {rounded_result}")
-        arcsinhgraph(Value,type)
+        arcsinhgraph(Value,MODES_BUTTON.get_current_mode())
         return result
 
 
@@ -246,7 +248,7 @@ def arcsinh(Value, type="radian", fix=0):
 
 def arcsinhgraph(v,mode):
     print("About to plot a graph")
-    if mode == "radian" or mode == "degree":
+    if mode == "RAD" or mode == "DEG":
         starting = max(v - 1, -1)
         ending = min(v + 1, 1)
     else:
@@ -260,15 +262,15 @@ def arcsinhgraph(v,mode):
 
     for i in value:
         try:
-            if mode == "degree":
+            if mode == "DEG":
                 conv = np.radians(i)
                 val = np.arcsinh(conv)
                 print(f"the sinh⁻¹ of {i} in {mode} is {val}")
-            elif mode == "radian":
+            elif mode == "RAD":
                 val = np.arcsinh(i)
                 print(f"the sinh⁻¹ of {i} in {mode} is {val}")
 
-            elif mode == "gradian":
+            elif mode == "GRAD":
                 convo = (i * np.pi / 200)
                 val = np.arcsinh(convo)
                 print(f"the sinh⁻¹ of {i} in {mode} is {val}")
@@ -281,7 +283,7 @@ def arcsinhgraph(v,mode):
             print(f"Skipping the value {i} due to domain error")
             continue
 
-    plt.plot(value, cal_value, label=f"f(sinh⁻¹(x)) of type {mode.capitalize()}")
+    plt.plot(value, cal_value, label=f"f(sinh⁻¹(x)) of type {mode}")
     plt.xlabel('x')
     plt.ylabel(f'f(sinh⁻¹(x))')
     plt.grid(True)
@@ -289,17 +291,17 @@ def arcsinhgraph(v,mode):
     plt.show()
 
 
-def arccosh(Value, type="radian", fix=0):
+def arccosh(Value, fix=0):
     if 1 < Value <= mp.inf:
-        if type == "degree":
+        if MODES_BUTTON.get_current_mode() == "DEG":
             deg_value = np.deg2rad(Value)
             result = np.arccosh(deg_value)
 
 
-        elif type == "radian":
+        elif MODES_BUTTON.get_current_mode() == "RAD":
             result = np.arccosh(Value)
 
-        elif type == "gradient":
+        elif MODES_BUTTON.get_current_mode()== "GRAD":
             con = Value * np.pi / 200
             result = np.arccosh(con)
 
@@ -310,7 +312,7 @@ def arccosh(Value, type="radian", fix=0):
             fix = 10
         rounded_result = round(result, fix)
         print(f"cosh⁻¹({Value}): {rounded_result}")
-        arccoshgraph(Value,type)
+        arccoshgraph(Value,MODES_BUTTON.get_current_mode())
         return result
 
 
@@ -322,7 +324,7 @@ def arccosh(Value, type="radian", fix=0):
 def arccoshgraph(v,mode):
     print("About to plot a graph")
     starting = v
-    ending = v + 2 * np.pi if mode == "radian" else v + 360
+    ending = v + 2 * np.pi if mode == "RAD" else v + 360
     if starting <= 1 or ending <= 1:
         print("Math error: Value Out of domain")
         return
@@ -331,14 +333,14 @@ def arccoshgraph(v,mode):
 
     for i in value:
         try:
-            if mode == "degree":
+            if mode == "DEG":
                 conv = np.radians(i)
                 val = np.arccosh(conv)
                 print(f"the cosh⁻¹ of {i} in {mode} is {val}")
-            elif mode == "radian":
+            elif mode == "RAD":
                 val = np.arccosh(i)
                 print(f"the cosh⁻¹ of {i} in {mode} is {val}")
-            elif mode == "gradian":
+            elif mode == "GRAD":
                 convo = (i * np.pi / 200)
                 val = np.arccosh(convo)
                 print(f"the cosh⁻¹ of {i} in {mode} is {val}")
@@ -358,16 +360,16 @@ def arccoshgraph(v,mode):
     plt.show()
 
 
-def arctanh(Value, type="radian", fix=0):
+def arctanh(Value, fix=0):
     if -1 <= Value <= 1:
-        if type == "degree":
+        if MODES_BUTTON.get_current_mode()== "DEG":
             deg_value = np.deg2rad(Value)
             result = np.arctanh(deg_value)
 
 
-        elif type == "radian":
+        elif MODES_BUTTON.get_current_mode()== "RAD":
             result = np.arctanh(Value)
-        elif type == "gradient":
+        elif MODES_BUTTON.get_current_mode() == "GRAD":
             con = Value * np.pi / 200
             result = np.arctanh(con)
 
@@ -378,7 +380,7 @@ def arctanh(Value, type="radian", fix=0):
             fix = 10
         rounded_result = round(result, fix)
         print(f"tanh⁻¹({Value}): {rounded_result}")
-        arctanhgraph(Value,type)
+        arctanhgraph(Value,MODES_BUTTON.get_current_mode())
         return result
 
 
@@ -389,7 +391,7 @@ def arctanh(Value, type="radian", fix=0):
 
 def arctanhgraph(v,mode):
     print("About to plot a graph")
-    if mode == "radian" or mode == "degree":
+    if mode == "RAD" or mode == "DEG":
         starting = max(v - 1, -1)
         ending = min(v + 1, 1)
     else:
@@ -403,14 +405,14 @@ def arctanhgraph(v,mode):
 
     for i in value:
         try:
-            if mode == "degree":
+            if mode == "DEG":
                 conv = np.radians(i)
                 val = np.arctanh(conv)
                 print(f"the tanh⁻¹ of {i} in {mode} is {val}")
-            elif mode == "radian":
+            elif mode == "RAD":
                 val = np.arctanh(i)
                 print(f"the tanh⁻¹ of {i} in {mode} is {val}")
-            elif mode == "gradian":
+            elif mode == "GRAD":
                 convo = (i * np.pi / 200)
                 val = np.arctanh(convo)
                 print(f"the tanh⁻¹ of {i} in {mode} is {val}")
@@ -435,14 +437,12 @@ def ABS(input):
 
 
 def Hype_button(Alpha_key,fix_key,Shift_key):
-    if Alpha_key==1:
-        print("C")
-        Alpha_key=0
-        return
-    elif Shift_key==1:
+    if AlphaKey.alpha()==1:
+        return"C"
+    elif ShiftKey.shift()==1:
          val =float(input("Enter Value"))
-         print(ABS(val))
-         Shift_key=0
+         return ABS(val)
+
 
 
     else:
@@ -463,7 +463,7 @@ def Hype_button(Alpha_key,fix_key,Shift_key):
                             break
                     except ValueError:
                         print("")
-            sinh(value, type, fix)
+            sinh(value, fix)
 
         elif users_input == 2:
             value = float(input("enter a value sinh⁻¹ "))
@@ -477,14 +477,22 @@ def Hype_button(Alpha_key,fix_key,Shift_key):
                             break
                     except ValueError:
                         print("")
-            arcsinh(value, type, fix)
+            arcsinh(value, fix)
 
         elif users_input == 3:
             value = float(input("enter a value cosh"))
             type = input("enter a type")
-            cosh(value, type)
-            fix = 0
 
+            fix = 0
+            if fix_key == 1:
+                while True:
+                    try:
+                        fix = int(input("1-9: "))
+                        if 1 <= fix <= 9:
+                            break
+                    except ValueError:
+                        print("")
+            cosh(value,fix )
         elif users_input == 4:
             value = float(input("enter a value cosh⁻¹"))
             type = input("enter a type")
@@ -497,7 +505,7 @@ def Hype_button(Alpha_key,fix_key,Shift_key):
                             break
                     except ValueError:
                         print("")
-            arccosh(value, type, fix)
+            arccosh(value, fix)
 
         elif users_input == 5:
             value = float(input("enter a value tanh"))
@@ -511,7 +519,7 @@ def Hype_button(Alpha_key,fix_key,Shift_key):
                             break
                     except ValueError:
                         print("")
-            tanh(value, type, fix)
+            tanh(value, fix)
 
         elif users_input == 6:
             value = float(input("enter a value tanh⁻¹"))
@@ -525,7 +533,7 @@ def Hype_button(Alpha_key,fix_key,Shift_key):
                             break
                     except ValueError:
                         print("")
-            arctanh(value, type, fix)
+            arctanh(value, fix)
 
 
 if __name__ == "__main__":

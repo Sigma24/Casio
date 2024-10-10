@@ -2,20 +2,21 @@ import numpy as np
 import math as mp
 import matplotlib.pyplot as plt
 
-Shift_key = 0
-Alpha_key = 0
+import MODES_BUTTON
+import  ShiftKey
+import  AlphaKey
 
 
-def sin(input, mode,fix=0):
+def sin(input, fix=0):
     if  -mp.inf < input < mp.inf:
-        if mode == "degree":
+        if MODES_BUTTON.get_current_mode() == "DEG":
             conv = np.radians(input)
             result = np.sin(conv)
 
-        elif mode == 'radian':
+        elif MODES_BUTTON.get_current_mode()== 'RAD':
             result = np.sin(input)
 
-        elif mode == 'gradian':
+        elif MODES_BUTTON.get_current_mode() == 'GRAD':
             convo = (input * np.pi / 200)
             result = np.sin(convo)
 
@@ -27,7 +28,7 @@ def sin(input, mode,fix=0):
             fix=9
         rounded_result=round(result,fix)
         print(f"sin({input}): {rounded_result}")
-        singraph(input,mode)
+        singraph(input,MODES_BUTTON.get_current_mode())
         return result
     else:
         print("Math error")
@@ -35,7 +36,7 @@ def sin(input, mode,fix=0):
 def singraph(v,mode):
     print("About to plot a graph")
     starting = v
-    ending = v + 2 * np.pi if mode == "radian" else v + 360
+    ending = v + 2 * np.pi if mode == "RAD" else v + 360
 
     if not -mp.inf<starting<mp.inf and not -mp.inf<ending<mp.inf:
       print("Math error")
@@ -47,17 +48,17 @@ def singraph(v,mode):
 
     for i in value:
         try:
-             if mode == "degree":
+             if mode == "DEG":
                  conv = np.radians(i)
                  val = np.sin(conv)
-                 print(f"The sin of {i} in degree is {val}")
-             elif mode == "radian":
+                 print(f"The sin of {i} in DEG is {val}")
+             elif mode== "RAD":
                  val = np.sin(i)
-                 print(f"The sin of {i} in radian is {val}")
-             elif mode == "gradian":
+                 print(f"The sin of {i} in RAD is {val}")
+             elif mode == "GRAD":
                  convo = (i * np.pi / 200)
                  val = np.sin(convo)
-                 print(f"The sin of {i} in gradian is {val}")
+                 print(f"The sin of {i} in gRAD is {val}")
              else:
                  print("Math error")
                  return None
@@ -67,7 +68,7 @@ def singraph(v,mode):
              continue
 
 
-    plt.plot(value, cal_value, label=f"f(sin(x)) of type {mode.capitalize()}")
+    plt.plot(value, cal_value, label=f"f(sin(x)) of type {MODES_BUTTON.get_current_mode()}")
     plt.xlabel('x')
     plt.ylabel(f'f(sin(x))')
     plt.grid(True)
@@ -75,15 +76,15 @@ def singraph(v,mode):
     plt.show()
 
 
-def arcsin(input, mode,fix=0):
+def arcsin(input,fix=0):
     if -1<=input<=1:
-        if mode == "degree":
+        if MODES_BUTTON.get_current_mode()== "DEG":
             conv = np.radians(input)
             result = np.arcsin(conv)
 
-        elif mode == 'radian':
+        elif MODES_BUTTON.get_current_mode() == 'RAD':
             result = np.arcsin(input)
-        elif mode == 'gradian':
+        elif MODES_BUTTON.get_current_mode() == 'GRAD':
             convo = (input * np.pi/200)
             result = np.arcsin(convo)
 
@@ -94,14 +95,14 @@ def arcsin(input, mode,fix=0):
             fix = 10
         rounded_result = round(result, fix)
         print(f"sin⁻¹({input}): {rounded_result}")
-        arcsingraph(input,mode)
+        arcsingraph(input,MODES_BUTTON.get_current_mode())
         return result
     else:
         print("Math error")
         return None
 def arcsingraph(v,mode):
     print("About to plot a graph")
-    if mode == "radian" or mode == "degree":
+    if mode == "RAD" or mode == "DEG":
         starting = max(v - 1, -1)
         ending = min(v + 1, 1)
     else:
@@ -118,29 +119,29 @@ def arcsingraph(v,mode):
 
     for i in value:
         try:
-            if mode == "degree":
+            if mode== "DEG":
                 conv = np.radians(i)
                 val = np.arcsin(np.sin(conv))
                 if np.isnan(val):
                     print(f"Skipping value {i} due to error.")
                     continue
-                print(f"The sin⁻¹ of {i} in degree is {val}")
+                print(f"The sin⁻¹ of {i} in DEG is {val}")
 
-            elif mode == "radian":
+            elif mode== "RAD":
                 val = np.arcsin(i)
                 if np.isnan(val):
                     print(f"Skipping value {i} due to error.")
                     continue
-                print(f"The sin⁻¹ of {i} in radian is {val}")
+                print(f"The sin⁻¹ of {i} in RAD is {val}")
 
-            elif mode == "gradian":
+            elif mode== "GRAD":
 
                 convo = (i * np.pi / 200)
                 val = np.arcsin(np.sin(convo))
                 if np.isnan(val):
                     print(f"Skipping value {i} due to error.")
                     continue
-                print(f"The sin⁻¹ of {i} in gradian is {val}")
+                print(f"The sin⁻¹ of {i} in GRAD is {val}")
 
             else:
                 print("Math error: Invalid mode.")
@@ -151,7 +152,7 @@ def arcsingraph(v,mode):
             print(f"Skipping value {i} due to error.")
             continue
 
-    plt.plot(value, cal_value, label=f"f(sin⁻¹(x)) of type {mode.capitalize()}")
+    plt.plot(value, cal_value, label=f"f(sin⁻¹(x)) of type {MODES_BUTTON.get_current_mode()}")
     plt.xlabel('x')
     plt.ylabel(f'f(sin⁻¹(x))')
     plt.grid(True)
@@ -162,12 +163,12 @@ def arcsingraph(v,mode):
 
 
 # ACTUAL CALL  "def sin_Button(Shift_key,value,mode,fix_key)"
-def sin_Button(Shift_key,fix_key,Alpha_key):
-    if Alpha_key==1:
-        Alpha_key = 0
-        print('D')
+def sin_Button(fix_key):
+    if AlphaKey.alpha()==1:
 
-    if Shift_key == 1:
+        return 'D'
+
+    if ShiftKey.shift() == 1:
         value = float(input("Enter a value for sin⁻¹(x): "))
         type = input("Enter a type:")
         fix=0
@@ -183,7 +184,7 @@ def sin_Button(Shift_key,fix_key,Alpha_key):
 
 
 
-        arcsin(value,type,fix)
+        arcsin(value,fix)
         Shift_key=0
     else:
         value = float(input("Enter a value for sin(x): "))
@@ -197,7 +198,7 @@ def sin_Button(Shift_key,fix_key,Alpha_key):
                       break
               except ValueError:
                     print("")
-        sin(value, type,fix)
+        sin(value,fix)
 
 if __name__ == "__main__":
-    sin_Button(0,1,0)
+    sin_Button(0,)

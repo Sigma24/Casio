@@ -2,21 +2,22 @@ import numpy as np
 import math as mp
 import matplotlib.pyplot as plt
 
-Shift_key = 0
-Alpha_key = 0
+import  MODES_BUTTON
+import  ShiftKey
+import  AlphaKey
 
 
 
-def tan(Value, Type,fix=0):
+def tan(Value, fix=0):
     if not np.isclose(np.cos(Value),0):
-        if Type == "radian":
+        if MODES_BUTTON.get_current_mode()== "RAD":
             result = np.tan(Value)
 
-        elif Type == "degree":
-            conv_degree = np.deg2rad(Value)
-            result = np.tan(conv_degree)
+        elif MODES_BUTTON.get_current_mode() == "DEG":
+            conv_DEG = np.deg2rad(Value)
+            result = np.tan(conv_DEG)
 
-        elif Type == "gradian":
+        elif MODES_BUTTON.get_current_mode() == "GRAD":
             conv_radian = Value * np.pi / 200
             result = np.tan(conv_radian)
 
@@ -26,8 +27,8 @@ def tan(Value, Type,fix=0):
         if fix <= 0:
             fix = 10
         rounded_result = round(result, fix)
-        print(f"tan({Type}): {rounded_result}")
-        tangraph(Value,Type)
+        print(f"tan({Value}): {rounded_result}")
+        tangraph(Value,MODES_BUTTON.get_current_mode())
         return result
     else:
         print("Math Error")
@@ -35,7 +36,7 @@ def tan(Value, Type,fix=0):
 def tangraph(v,mode):
     print("About to plot a graph")
     starting = v
-    ending = v + 2 * np.pi if mode == "radian" else v + 360
+    ending = v + 2 * np.pi if mode == "RAD" else v + 360
     if np.isclose(np.cos(starting),0) or np.isclose(np.cos(ending),0):
         print("Math error: Value out of domain where cos = 0")
     value = np.linspace(starting, ending, 200)
@@ -43,17 +44,17 @@ def tangraph(v,mode):
 
     for i in value:
         try:
-             if mode == "degree":
+             if mode == "DEG":
                  conv = np.radians(i)
                  val = np.tan(conv)
-                 print(f"The tan of {i} in degree is {val}")
-             elif mode == "radian":
+                 print(f"The tan of {i} in DEG is {val}")
+             elif mode == "RAD":
                  val = np.tan(i)
-                 print(f"The tan of {i} in radian is {val}")
-             elif mode == "gradian":
+                 print(f"The tan of {i} in RAD is {val}")
+             elif mode  == "GRAD":
                  convo = (i * np.pi / 200)
                  val = np.tan(convo)
-                 print(f"The tan of {i} in gradian is {val}")
+                 print(f"The tan of {i} in gRAD is {val}")
              else:
                  print("Math error")
                  return None
@@ -63,7 +64,7 @@ def tangraph(v,mode):
               continue
 
 
-    plt.plot(value, cal_value, label=f"f(tan(x)) of type {mode.capitalize()}")
+    plt.plot(value, cal_value, label=f"f(tan(x)) of type {mode}")
     plt.xlabel('x')
     plt.ylabel(f'f(tan(x))')
     plt.grid(True)
@@ -71,16 +72,16 @@ def tangraph(v,mode):
     plt.show()
 
 
-def arctan(input, mode,fix=0):
+def arctan(input,fix=0):
     if -mp.inf<input<mp.inf:
-        if mode == "degree":
+        if MODES_BUTTON.get_current_mode() == "DEG":
             conv = np.radians(input)
             result = np.arctan(conv)
 
-        elif mode == 'radian':
+        elif MODES_BUTTON.get_current_mode() == 'RAD':
             result = np.arctan(input)
 
-        elif mode == 'gradian':
+        elif MODES_BUTTON.get_current_mode()== 'GRAD':
             convo = (input * np.pi/200)
             result = np.arctan(convo)
 
@@ -92,7 +93,7 @@ def arctan(input, mode,fix=0):
             fix = 10
         rounded_result = round(result, fix)
         print(f"tan⁻¹({input}): {rounded_result}")
-        arctangraph(input,mode)
+        arctangraph(input,MODES_BUTTON.get_current_mode())
         return result
     else:
         print("Math error")
@@ -101,7 +102,7 @@ def arctan(input, mode,fix=0):
 def arctangraph(v,mode):
     print("About to plot a graph")
     starting = v
-    ending = v + 2 * np.pi if mode == "radian" else v + 360
+    ending = v + 2 * np.pi if mode == "RAD" else v + 360
     if not -mp.inf < starting < mp.inf and not -mp.inf<ending<mp.inf:
         print("Math error: Value out of domain")
     value = np.linspace(starting, ending, 200)
@@ -109,14 +110,14 @@ def arctangraph(v,mode):
 
     for i in value:
        try:
-           if mode == "degree":
+           if mode== "DEG":
                conv = np.radians(i)
                val = np.arctan(conv)
                print(f"the tan⁻¹ of {i} in {mode} is {val}")
-           elif mode == "radian":
+           elif mode == "RAD":
                val = np.arctan(i)
                print(f"the tan⁻¹ of {i} in {mode} is {val}")
-           elif mode == "gradian":
+           elif mode == "GRAD":
                convo = (i * np.pi / 200)
                val = np.arctan(convo)
                print(f"the tan⁻¹ of {i} in {mode} is {val}")
@@ -129,7 +130,7 @@ def arctangraph(v,mode):
            continue
 
 
-    plt.plot(value, cal_value, label=f"f(tan⁻¹(x)) of type {mode.capitalize()}")
+    plt.plot(value, cal_value, label=f"f(tan⁻¹(x)) of type {mode}")
     plt.xlabel('x')
     plt.ylabel(f'f(tan⁻¹(x))')
     plt.grid(True)
@@ -137,12 +138,12 @@ def arctangraph(v,mode):
     plt.show()
 
 # ACTUAL CALL  "def tan_Button(Shift_key,value,mode,fix_key)"
-def Tan_Button(Shift_key,fix_key,Alpha_key):
-    if Alpha_key == 1:
-        Alpha_key = 0
+def Tan_Button(fix_key):
+    if AlphaKey.alpha() == 1:
+
         return 'F'
 
-    if Shift_key == 1:
+    if ShiftKey.shift() == 1:
         value = float(input("Enter a value for cos⁻¹(x): "))
         type = input("Enter a type: ")
         fix = 0
@@ -154,7 +155,7 @@ def Tan_Button(Shift_key,fix_key,Alpha_key):
                         break
                 except ValueError:
                     print("")
-        arctan(value, type,fix)
+        arctan(value,fix)
         Shift_key=0
     else:
         value = float(input("Enter a value for cos(x): "))
@@ -168,8 +169,8 @@ def Tan_Button(Shift_key,fix_key,Alpha_key):
                         break
                 except ValueError:
                     print("")
-        tan(value, type,fix)
+        tan(value,fix)
 
 
 if __name__ == "__main__":
-    Tan_Button(1, 1, 1)
+    Tan_Button(1)
