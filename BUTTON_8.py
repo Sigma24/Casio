@@ -21,4 +21,6 @@ def  eight_Button():
     else:
         return 8
 
-eight_Button()
+if __name__ == "__main__":
+
+  eight_Button()

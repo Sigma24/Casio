@@ -12,5 +12,7 @@ def  Five_Button():
            return 5
     else:
         pass
+if __name__ == "__main__":
 
-Five_Button()
+
+   Five_Button()

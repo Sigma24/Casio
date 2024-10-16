@@ -13,4 +13,6 @@ def  Six_Button():
     else:
         pass
 
-Six_Button()
+if __name__ == "__main__":
+
+  Six_Button()

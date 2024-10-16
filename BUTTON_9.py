@@ -42,4 +42,6 @@ def  Nine_Button():
     else:
         return 9
 
-Nine_Button()
+if __name__ == "__main__":
+
+  Nine_Button()

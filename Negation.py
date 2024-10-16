@@ -88,3 +88,5 @@ def negation_button(input_sequence):
         return "A (Hex)"
 
     return "Math Error"
+
+
