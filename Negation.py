@@ -1,7 +1,7 @@
 import math as mp
 import MODES_BUTTON
-import ShiftKey
-import AlphaKey
+import Shift_Alpha
+
 
 memory = {}
 
@@ -15,7 +15,7 @@ def negation_complex_shift(shift_key):
 
 
 def real_imaginary(r, theta):
-    if negation_complex_shift(ShiftKey.shift()) == "∠":
+    if negation_complex_shift(Shift_Alpha.shift()) == "∠":
         if MODES_BUTTON.get_current_mode() == "DEG":
             theta_rad = mp.radians(theta)
             real_part = r * mp.cos(theta_rad)
@@ -56,7 +56,7 @@ def handle_error(input_sequence):
 
 
 def negation_button(input_sequence):
-    if ShiftKey.shift() == -1 and AlphaKey.alpha() == -1:
+    if Shift_Alpha.shift() == -1 and Shift_Alpha.alpha() == -1:
         if MODES_BUTTON.get_current_mode() == "NORM":
             if handle_error(input_sequence):
                 return "Math Error"
@@ -67,7 +67,7 @@ def negation_button(input_sequence):
         else:
             return "Math Error"
 
-    elif ShiftKey.shift() == 1 and AlphaKey.alpha() == -1:
+    elif Shift_Alpha.shift() == 1 and Shift_Alpha.alpha() == -1:
 
         if MODES_BUTTON.get_current_mode() == "CMPLX":
             if handle_error(input_sequence):
@@ -80,11 +80,11 @@ def negation_button(input_sequence):
         else:
             return "Math Error"
 
-    elif AlphaKey.alpha() == 1:
+    elif Shift_Alpha.alpha() == 1:
         memory['A'] = input_sequence[-1] if input_sequence else None
         return f"Stored in A: {memory['A']}"
 
-    elif AlphaKey.alpha() == 1 and MODES_BUTTON.get_current_mode() == "BaseN":
+    elif Shift_Alpha.alpha() == 1 and MODES_BUTTON.get_current_mode() == "BaseN":
         return "A (Hex)"
 
     return "Math Error"

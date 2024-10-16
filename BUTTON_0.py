@@ -1,17 +1,15 @@
 import numpy as np
 import math as mp
-import ShiftKey  # Ensure this points to the correct module
-import AlphaKey  # Ensure this points to the correct module
-
+import Shift_Alpha
 def rand():
     print("Random function called.")
     return "Some result"
 
 def zero_button():
-    if ShiftKey.shift() == 1:
+    if Shift_Alpha.shift() == 1:
         result = rand()
         print(result)
-    elif AlphaKey.alpha() == 1:
+    elif Shift_Alpha.alpha() == 1:
         pass
     else:
         return 0

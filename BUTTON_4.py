@@ -1,13 +1,13 @@
 import  numpy as np
 import  math as mp
 import  matplotlib.pyplot as plt
-import  ShiftKey
-import  AlphaKey
+import Shift_Alpha
+
 
 
 
 def  Four_Button():
-    if  ShiftKey.shift()==0 or  AlphaKey.alpha()==-1:
+    if  Shift_Alpha.shift()==0 or  Shift_Alpha.alpha()==-1:
 
            return 4
     else:

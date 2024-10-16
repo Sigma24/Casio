@@ -1,8 +1,3 @@
-# mode.py
-
-import numpy as np
-import math as mp
-import matplotlib.pyplot as plt
 from BUTTON_1 import one_button
 from BUTTON_2 import Two_Button
 from BUTTON_3 import Three_Button
@@ -11,9 +6,8 @@ from BUTTON_5 import Five_Button
 from BUTTON_6 import Six_Button
 from BUTTON_7 import Seven_Button
 from BUTTON_8 import eight_Button
-from BUTTON_9 import Nine_Button
-import  ShiftKey
-import  AlphaKey
+import Shift_Alpha
+
 
 # Global variable to store the selected mode
 selected_mode = 'DEG'
@@ -142,11 +136,11 @@ def MODE():
         print("Invalid selection, please try again.")
 
 def mod_button():
-    if ShiftKey.shift() == -1 and AlphaKey.alpha() == -1:
+    if Shift_Alpha.shift() == -1 and Shift_Alpha.alpha() == -1:
         MODE()
-    elif ShiftKey.shift() == 1:
+    elif Shift_Alpha.shift() == 1:
         Mode_Shift()
-    elif AlphaKey.alpha() == 1:
+    elif Shift_Alpha.alpha() == 1:
         print("Alpha key function not implemented.")
     else:
         print("No valid key pressed.")

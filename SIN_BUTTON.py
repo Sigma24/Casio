@@ -1,10 +1,9 @@
 import numpy as np
 import math as mp
 import matplotlib.pyplot as plt
-
 import MODES_BUTTON
-import  ShiftKey
-import  AlphaKey
+import Shift_Alpha
+
 
 
 def sin(input, fix=0):
@@ -164,11 +163,11 @@ def arcsingraph(v,mode):
 
 # ACTUAL CALL  "def sin_Button(Shift_key,value,mode,fix_key)"
 def sin_Button(fix_key):
-    if AlphaKey.alpha()==1:
+    if Shift_Alpha.alpha()==1:
 
         return 'D'
 
-    if ShiftKey.shift() == 1:
+    if Shift_Alpha.shift() == 1:
         value = float(input("Enter a value for sin⁻¹(x): "))
         type = input("Enter a type:")
         fix=0

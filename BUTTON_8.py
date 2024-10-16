@@ -2,8 +2,8 @@ import  numpy as np
 import  math as mp
 import  matplotlib.pyplot as plt
 
-import  ShiftKey
-import  AlphaKey
+import Shift_Alpha
+
 
 
 def  conversion_Number():
@@ -12,10 +12,10 @@ def  conversion_Number():
 
 
 def  eight_Button():
-    if  ShiftKey.shift()==1:
+    if  Shift_Alpha.shift()==1:
            conversion_Number()
 
-    elif AlphaKey.alpha()==1:
+    elif Shift_Alpha.alpha()==1:
         pass
 
     else:

@@ -1,8 +1,8 @@
-import  ShiftKey
-import  AlphaKey
+import Shift_Alpha
+
 
 def one_button():
-         if ShiftKey.shift()==-1 or AlphaKey.alpha()==-1:
+         if Shift_Alpha.shift()==-1 or Shift_Alpha.alpha()==-1:
 
                        return  1
          else:

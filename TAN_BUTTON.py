@@ -1,10 +1,9 @@
 import numpy as np
 import math as mp
 import matplotlib.pyplot as plt
-
 import  MODES_BUTTON
-import  ShiftKey
-import  AlphaKey
+import Shift_Alpha
+
 
 
 
@@ -139,11 +138,11 @@ def arctangraph(v,mode):
 
 # ACTUAL CALL  "def tan_Button(Shift_key,value,mode,fix_key)"
 def Tan_Button(fix_key):
-    if AlphaKey.alpha() == 1:
+    if Shift_Alpha.alpha() == 1:
 
         return 'F'
 
-    if ShiftKey.shift() == 1:
+    if Shift_Alpha.shift() == 1:
         value = float(input("Enter a value for cos⁻¹(x): "))
         type = input("Enter a type: ")
         fix = 0

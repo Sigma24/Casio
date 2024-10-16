@@ -2,8 +2,8 @@ import numpy as np
 import math as mp
 import matplotlib.pyplot as plt
 import  MODES_BUTTON
-import  ShiftKey
-import  AlphaKey
+import Shift_Alpha
+
 
 
 
@@ -437,9 +437,9 @@ def ABS(input):
 
 
 def Hype_button(Alpha_key,fix_key,Shift_key):
-    if AlphaKey.alpha()==1:
+    if Shift_Alpha.alpha()==1:
         return"C"
-    elif ShiftKey.shift()==1:
+    elif Shift_Alpha.shift()==1:
          val =float(input("Enter Value"))
          return ABS(val)
 
