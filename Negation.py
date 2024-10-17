@@ -31,8 +31,7 @@ def real_imaginary(r, theta):
             imag_part = r * mp.sin(theta_rad)
             return complex(real_part, imag_part)
     else:
-        print("Math Error")
-        return None
+        return r,theta
 
 
 def handle_error(input_sequence):
