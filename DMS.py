@@ -6,6 +6,7 @@ import Shift_Alpha
 
 memory = {}
 dms_key=-1
+equal_pressed = False
 
 
 
@@ -67,18 +68,20 @@ def decimal_value(input_sequence):
 
 
 def Main(Input_sequence):
+    global dms_key , equal_pressed
+    if not equal_pressed:
+        if Shift_Alpha.alpha() == 1 and dms_key==1:
+            dms_key=-1
+            return f"stored in b {memory.get('b', 'No value stored')}"
+        elif Shift_Alpha.alpha() == 1 and MODES_BUTTON.get_current_mode() == "BaseN" and dms_key==1:
+            dms_key=-1
+            return 'Hexa B'
 
-    if Shift_Alpha.alpha() == 1:
-        return f"stored in b {memory.get('b', 'No value stored')}"
-    elif Shift_Alpha.alpha() == 1 and MODES_BUTTON.get_current_mode() == "BaseN":
-        return 'Hexa B'
-
-    toggle_dms_key()
-
-    if Input_sequence is None:
-        if dms_key == 1:
-               symbol(Shift_Alpha.shift())
-        return
+        if Input_sequence is None:
+            if dms_key == 1:
+                   symbol(Shift_Alpha.shift())
+                   dms_key=-1
+            return
 
     if '°' not in Input_sequence:
 
