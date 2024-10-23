@@ -89,3 +89,6 @@ def negation_button(input_sequence):
     return "Math Error"
 
 
+if __name__ == "__main__":
+    # Test the main function with input sequence "3/4"
+    print(negation_button("3/4"))

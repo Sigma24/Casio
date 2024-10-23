@@ -1,11 +1,14 @@
 import re
+from enum import FlagBoundary
+from symtable import Symbol
+
 import MODES_BUTTON
 import Shift_Alpha
 
 
 
 memory = {}
-dms_key=-1
+dms_key=1
 equal_pressed = False
 
 
@@ -21,6 +24,7 @@ def symbol(shift_key):
         return None
     else:
         return "°"
+
 
 
 def simple_degree_min_second(Input_sequence):
@@ -70,35 +74,36 @@ def decimal_value(input_sequence):
 def Main(Input_sequence):
     global dms_key , equal_pressed
     if not equal_pressed:
-        if Shift_Alpha.alpha() == 1 and dms_key==1:
-            dms_key=-1
-            return f"stored in b {memory.get('b', 'No value stored')}"
-        elif Shift_Alpha.alpha() == 1 and MODES_BUTTON.get_current_mode() == "BaseN" and dms_key==1:
-            dms_key=-1
-            return 'Hexa B'
+        #      if Shift_Alpha.alpha() == 1 and dms_key==1:
+        #          dms_key=-1
+        #          return f"stored in b {memory.get('b', 'No value stored')}"
+        #      elif Shift_Alpha.alpha() == 1 and MODES_BUTTON.get_current_mode() == "BaseN" and dms_key==1:
+        #          dms_key=-1
+        #          return 'Hexa B'
+
 
         if Input_sequence is None:
             if dms_key == 1:
-                   symbol(Shift_Alpha.shift())
-                   dms_key=-1
-            return
+
+                dms_key=-1
+                return symbol(0)
 
     if '°' not in Input_sequence:
 
-     if dms_key == -1:
+        if dms_key == -1:
              print(Input_sequence)
-     elif dms_key == 1:
+        if dms_key == 1:
              print(simple_degree_min_second(float(Input_sequence)))
 
     if '°' in Input_sequence:
         if dms_key == -1:
             print(as_in_input(Input_sequence))
-        elif dms_key == 1:
-            print(decimal_value(Input_sequence))
+        if dms_key == 1:
+              print(decimal_value(Input_sequence))
 
 
-if __name__ == "__main__":
-    Main("°2")
+if  __name__ == "__main__":
+       print(Main(None))
 
 
 
